@@ -1,6 +1,5 @@
 .content {
     background-color: gray;
-    color: white;
     height: 100%;
     max-width: 500px;
     margin: auto;
@@ -9,8 +8,17 @@
 
 h1 {
     padding-top: 35%;
+    color: white;
     text-decoration: overline;
     text-shadow: black 1px 0 10px;
+}
+
+h2 {
+    padding-top: 35%;
+    color: red;
+    border-bottom: black 2px solid;
+    text-shadow: black 0px 30px 0px;
+    font-style: italic;
 }
 
 body {
