@@ -1,23 +1,18 @@
-async function test(): Promise<any> {
+async function test(): Promise<string> {
     const raw = await fetch('https://us-east1-wiiq-proj.cloudfunctions.net/hello', {
-        headers: {
-            Accept: 'text/plain',
-            'Content-Type': 'text/plain',
-        },
         method: 'GET',
     });
+    console.log(raw);
     if (!raw.ok) {
-        console.log(raw);
         return "bad response";
     }
-    const response = raw.text;
-    return response;
+    return await raw.text();
 }
 
 test().then((out: string) => {
     document.getElementById("out").innerHTML = out;
 }).catch((_) => {
-    //window.location.href = "error.html";
+    document.getElementById("out").innerHTML = _;
 });
 
 
