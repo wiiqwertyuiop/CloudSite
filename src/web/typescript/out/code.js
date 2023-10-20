@@ -1,5 +1,5 @@
 async function test() {
-    const raw = await fetch('https://us-east1-wiiq-proj.cloudfunctions.net/hello', {
+    const raw = await fetch('https://us-central1-wiiq-proj.cloudfunctions.net/on_request_example', {
         method: 'GET',
     });
     console.log(raw);
