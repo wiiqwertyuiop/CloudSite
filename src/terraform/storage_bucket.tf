@@ -5,10 +5,20 @@ resource "google_storage_bucket" "static" {
  location      = "US-EAST1"
  storage_class = "STANDARD"
  project       = "wiiq-proj"
- uniform_bucket_level_access = true
+ uniform_bucket_level_access = false
+ website {
+  main_page_suffix = "main.html"
+  not_found_page   = "error.html"
+ }
 }
 
 # Access control
+resource "google_storage_default_object_access_control" "public_rule" {
+  bucket = google_storage_bucket.static.name
+  role   = "READER"
+  entity = "allUsers"
+}
+
 resource "google_storage_bucket_iam_member" "member" {
   bucket = google_storage_bucket.static.name
   role   = "roles/storage.objectViewer"
