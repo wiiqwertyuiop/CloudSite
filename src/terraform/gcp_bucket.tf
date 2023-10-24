@@ -17,7 +17,7 @@ resource "google_storage_bucket_iam_member" "member" {
 
 # Upload all files to bucket
 resource "google_storage_bucket_object" "files" {
- for_each = fileset("${path.root}/../web", "**")
+ for_each     = fileset("${path.root}/../web", "**")
  name         = each.value
  source       = "../web/${each.value}"
  bucket       = google_storage_bucket.static.id
