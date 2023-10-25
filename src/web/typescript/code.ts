@@ -1,5 +1,5 @@
 async function test(): Promise<string> {
-    const raw = await fetch('https://us-central1-wiiq-proj.cloudfunctions.net/on_request_example', {
+    const raw = await fetch('https://us-central1-wiiq-proj.cloudfunctions.net/last_word', {
         method: 'GET',
     });
     console.log(raw);
