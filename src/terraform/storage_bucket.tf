@@ -1,10 +1,9 @@
 # Create new storage bucket in the US multi-region
 # with standard storage
 resource "google_storage_bucket" "static" {
- name          = "wiiq-static-site-final"
+ name          = var.bucket_name
  location      = "US-EAST1"
  storage_class = "STANDARD"
- project       = "wiiq-proj"
  uniform_bucket_level_access = false
  website {
   main_page_suffix = "main.html"
