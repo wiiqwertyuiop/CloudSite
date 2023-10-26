@@ -9,6 +9,15 @@ resource "google_storage_bucket" "static" {
   main_page_suffix = "main.html"
   not_found_page   = "error.html"
  }
+ lifecycle_rule {
+   action {
+     type = "SetStorageClass"
+     storage_class = "NEARLINE"
+   }
+   condition {
+     num_newer_versions = 1
+   }
+ }
 }
 
 # Access control
@@ -30,5 +39,5 @@ resource "google_storage_bucket_object" "files" {
  name         = each.value
  source       = "../web/${each.value}"
  bucket       = google_storage_bucket.static.id
- cache_control = 360
+ cache_control = "no-store"
 }
