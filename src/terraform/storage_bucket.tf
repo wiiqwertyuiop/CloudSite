@@ -1,23 +1,23 @@
 # Create new storage bucket in the US multi-region
 # with standard storage
 resource "google_storage_bucket" "static" {
- name          = var.bucket_name
- location      = "US-EAST1"
- storage_class = "STANDARD"
- uniform_bucket_level_access = false
- website {
-  main_page_suffix = "main.html"
-  not_found_page   = "error.html"
- }
- lifecycle_rule {
-   action {
-     type = "SetStorageClass"
-     storage_class = "NEARLINE"
-   }
-   condition {
-     num_newer_versions = 1
-   }
- }
+  name                        = var.bucket_name
+  location                    = "US-EAST1"
+  storage_class               = "STANDARD"
+  uniform_bucket_level_access = false
+  website {
+    main_page_suffix = "main.html"
+    not_found_page   = "error.html"
+  }
+  lifecycle_rule {
+    action {
+      type          = "SetStorageClass"
+      storage_class = "NEARLINE"
+    }
+    condition {
+      num_newer_versions = 1
+    }
+  }
 }
 
 # Access control
@@ -35,9 +35,9 @@ resource "google_storage_bucket_iam_member" "member" {
 
 # Upload all files to bucket
 resource "google_storage_bucket_object" "files" {
- for_each     = fileset("${path.root}/../web", "**")
- name         = each.value
- source       = "../web/${each.value}"
- bucket       = google_storage_bucket.static.id
- cache_control = "no-store"
+  for_each      = fileset("${path.root}/../web", "**")
+  name          = each.value
+  source        = "../web/${each.value}"
+  bucket        = google_storage_bucket.static.id
+  cache_control = "no-store"
 }

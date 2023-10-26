@@ -1,4 +1,4 @@
 variable "bucket_name" {
-    type = string
-    default = "wiiq-static-site-final"
+  type    = string
+  default = "wiiq-static-site-final"
 }
