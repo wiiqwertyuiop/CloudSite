@@ -6,6 +6,8 @@ on:
       - main
     pull_request:
     
+create_credentials_file: false
+
 jobs:
   setup_gcloud:
     name: 'Setup gcloud'
@@ -13,7 +15,6 @@ jobs:
     steps:
     - id: 'auth'
       uses: 'google-github-actions/auth@v1'
-      create_credentials_file: false
       with:
         credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
 
