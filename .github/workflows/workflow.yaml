@@ -7,7 +7,7 @@ on:
     pull_request:
     
 job:
-  job_id:
+  setup_gcloud:
     steps:
     - id: 'auth'
       uses: 'google-github-actions/auth@v1'
