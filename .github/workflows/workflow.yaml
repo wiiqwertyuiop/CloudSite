@@ -22,5 +22,4 @@ jobs:
       uses: 'google-github-actions/setup-gcloud@v1'
 
     - name: 'Invalidate cache'
-      run: 'gcloud compute url-maps invalidate-cdn-cache "basic-url-map" \
-    --path "/*"'
+      run: 'gcloud compute url-maps invalidate-cdn-cache basic-url-map --path "/*"'
