@@ -12,7 +12,7 @@ resource "google_compute_target_https_proxy" "default" {
 }
 
 resource "google_compute_url_map" "default" {
-  name        = "basic-url-map"
+  name            = "basic-url-map"
   default_service = google_compute_backend_bucket.default.id
 }
 
