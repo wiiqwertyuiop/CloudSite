@@ -12,10 +12,13 @@ jobs:
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     runs-on: ubuntu-latest
     steps:
+    - name: "actions/checkout"
+      uses: actions/checkout@v1
+    
     - id: 'auth'
       uses: 'google-github-actions/auth@v1'
       with:
-        create_credentials_file: true
+        create_credentials_file: false
         credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
 
     - name: 'Set up Cloud SDK'
