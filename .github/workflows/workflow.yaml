@@ -7,28 +7,7 @@ on:
     pull_request:
 
 jobs:
-  setup_gcloud:
-
-    name: 'Setup gcloud'
-    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-    runs-on: 'ubuntu-latest'
-
-    steps:
-    - name: 'actions/checkout'
-      uses: actions/checkout@v1
-    
-    - id: 'auth'
-      uses: 'google-github-actions/auth@v1'
-      with:
-        credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
-
-    - name: 'Set up Cloud SDK'
-      uses: 'google-github-actions/setup-gcloud@v1'
-
-    - name: 'Invalidate cache'
-      run: 'gcloud compute url-maps invalidate-cdn-cache basic-url-map --path "/*"'
-
-  terraform:
+  infrastructure:
     name: 'Build/Update Infrastructure'
     runs-on: 'ubuntu-latest'
     defaults:
@@ -39,6 +18,11 @@ jobs:
       - name: 'actions/checkout'
         uses: actions/checkout@v1
 
+      - id: 'auth'
+        uses: 'google-github-actions/auth@v1'
+        with:
+          credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
+          
       - name: 'Setup Terraform'
         uses: hashicorp/setup-terraform@v1
         with:
@@ -52,5 +36,17 @@ jobs:
 
       - name: 'Terraform Plan'
         run: terraform plan
-        env:
-          GOOGLE_CREDENTIALS: '${{ secrets.GCP_CREDENTIALS }}'
+
+      - name: 'Terraform Apply'
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        run: terraform apply -auto-approve
+
+      - name: 'Set up Cloud SDK'
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        uses: 'google-github-actions/setup-gcloud@v1'
+
+      - name: 'Invalidate cache'
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        run: 'gcloud compute url-maps invalidate-cdn-cache basic-url-map --path "/*"'
+
+
