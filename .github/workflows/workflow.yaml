@@ -9,6 +9,7 @@ on:
 jobs:
   setup_gcloud:
     name: 'Setup gcloud'
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     runs-on: ubuntu-latest
     steps:
     - id: 'auth'
@@ -20,5 +21,6 @@ jobs:
     - name: 'Set up Cloud SDK'
       uses: 'google-github-actions/setup-gcloud@v1'
 
-    - name: 'Use gcloud CLI'
-      run: 'gcloud info'
+    - name: 'Invalidate cache'
+      run: 'gcloud compute url-maps invalidate-cdn-cache "basic-url-map" \
+    --path "/*"'
