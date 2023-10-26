@@ -10,10 +10,10 @@ jobs:
   setup_gcloud:
     name: 'Setup gcloud'
     runs-on: ubuntu-latest
-    create_credentials_file: false
     steps:
     - id: 'auth'
       uses: 'google-github-actions/auth@v1'
+      create_credentials_file: false
       with:
         credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
 
