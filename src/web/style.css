@@ -1,9 +1,13 @@
 .content {
     background-color: gray;
     height: 100%;
-    max-width: 500px;
+    max-width: 100%;
+    width: fit-content;
+    word-break: break-all;
     margin: auto;
     text-align: center;
+    padding: 10px;
+    box-sizing:border-box
 }
 
 h1 {
