@@ -3,6 +3,7 @@
     height: 100%;
     max-width: 100%;
     width: fit-content;
+    min-width: 30vw;
     word-break: break-all;
     margin: auto;
     text-align: center;
@@ -32,5 +33,5 @@ body {
 }
 
 b {
-    font-size: xxx-large;
+    font-size: 8vh;
 }
