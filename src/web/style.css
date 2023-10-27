@@ -15,7 +15,7 @@ h1 {
     padding-top: 20vh;
     font-size: 10vh;
     color: white;
-    text-decoration: overline;
+    text-decoration: underline;
     text-shadow: black 1px 0 10px;
 }
 
