@@ -1,6 +1,6 @@
 {
     "compilerOptions": {
-      "target": "es2017",
+      "target": "ES2022",
       "module": "ES2022",
       "outDir": "src/web/typescript/out"
     }

@@ -3,19 +3,20 @@
     height: 100%;
     max-width: 100%;
     width: fit-content;
+    overflow: hidden;
     min-width: 30vw;
-    word-break: break-all;
     margin: auto;
     text-align: center;
     padding: 10px;
     box-sizing:border-box
 }
 
-h1 {
+#out {
     font-size: 8vh;
     color: white;
-    /* text-decoration: underline; */
+    text-decoration: underline;
     text-shadow: black 1px 0 10px;
+    min-width: fit-content;
 }
 
 h2 {
